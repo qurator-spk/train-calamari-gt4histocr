@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Train a GT4HistOCR Calamari model
 # (or rather 5 for voted prediction)
 
