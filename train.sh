@@ -35,6 +35,17 @@ done
 echo "Removing dta19/1882-keller_sinngedicht/04970.nrm.png (Broken PNG)"
 rm -f $TMPDIR/dta19/1882-keller_sinngedicht/04970.*
 
+
+# If we're just testing, keep just some files
+if [ "$TEST" = 1 ]; then
+  num_pngs_wanted=2000
+  num_pngs=`find "$TMPDIR" -path "$TMPDIR/*/*/*.png" | wc -l`
+  num_pngs_to_delete=$(($num_pngs-$num_pngs_wanted))
+  echo "TEST = 1, Reducing dataset from $num_pngs to $num_pngs_wanted PNG files"
+  find "$TMPDIR" -path "$TMPDIR/*/*/*.png" | shuf -n $num_pngs_to_delete | xargs rm
+fi
+
+
 export PYTHONUNBUFFERED=1  # For python + tee
 
 outdir=$DATA_SUBDIR/calamari-models/GT4HistOCR
