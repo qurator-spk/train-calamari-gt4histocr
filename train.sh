@@ -48,7 +48,8 @@ fi
 
 export PYTHONUNBUFFERED=1  # For python + tee
 
-outdir=$DATA_SUBDIR/calamari-models/GT4HistOCR
+training_id=`date -Iminutes`
+outdir=$DATA_SUBDIR/calamari-models/GT4HistOCR/$training_id
 mkdir -p $outdir
 
 export TF_FORCE_GPU_ALLOW_GROWTH=true  # To prevent TF from taking all GPU memory
@@ -63,4 +64,4 @@ calamari-cross-fold-train \
   --n_folds=5 \
   --max_parallel_models=3 \
   --display=0.01 \
-  2>&1 | tee $outdir/train.`date -Iminutes`.log
+  2>&1 | tee $outdir/train.${training_id}.log
