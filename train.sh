@@ -59,6 +59,6 @@ calamari-cross-fold-train \
   --early_stopping_nbest=5 \
   --batch_size=128 \
   --n_folds=5 \
-  --max_parallel_models=3 \
+  --max_parallel_models=1 \
   --display=0.01 \
   2>&1 | tee $outdir/train.`date -Iminutes`.log
