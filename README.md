@@ -12,4 +12,4 @@ is not available, that is if you're not a member of the Qurator team at SBB.
 Trained models
 --------------
 For a finished model have a look here:
-https://file.spk-berlin.de:8443/calamari-models/
+https://qurator-data.de/calamari-models/
