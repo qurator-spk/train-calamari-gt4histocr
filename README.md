@@ -1,7 +1,7 @@
 Train a GT4HistOCR Calamari model
 =================================
 
-`train.sh` trains a Calamari model based on GT4HistOCR. Or rather 5 using
+`train.sh` trains a Calamari 0.3.5 model based on GT4HistOCR. Or rather 5 using
 cross-validation to use for confidence voting. This repository mainly 
 serves as documentation of the provenance of the model published at 
 https://qurator-data.de/calamari-models/, not as the definitive guide to
