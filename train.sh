@@ -48,7 +48,7 @@ fi
 
 export PYTHONUNBUFFERED=1  # For python + tee
 
-training_id=`date -Iminutes`
+training_id=`date -Iminutes | sed 's/:/_/g'`
 outdir=$DATA_SUBDIR/calamari-models/GT4HistOCR/$training_id
 mkdir -p $outdir
 
