@@ -1,3 +1,19 @@
+# ______________________________________
+#/ always copy the file from            \
+#| mono-repo/qurator_data_lib.sh, never |
+#\ edit the copy in the project         /
+# --------------------------------------
+#        \   ^__^
+#         \  (oo)\_______
+#            (__)\       )\/\
+#                ||----w |
+#                ||     ||
+
+if [ -z "$BASH" ]; then
+  echo "qurator_data_lib.sh uses bash features, please make sure to run $0 in bash"
+  exit 1
+fi
+
 check_data_subdir() {
   result=0
 
@@ -51,11 +67,11 @@ download_to() {
   unpack_to="$2"
 
   (
-    cd data
+    cd $DATA_SUBDIR
     tmpf=`mktemp 'tmp.XXXXX'`
-    wget -O $tmpf "$download_source"
+    curl -sSL -o $tmpf "$download_source"
     mkdir -p "$unpack_to"
-    # XXX Unpacking relies on tar -a unpacking any tar compression, might not work everywhere?
+    # Unpacking relies on tar -a unpacking any tar compression
     tar -C "$unpack_to" -af $tmpf -xv
     rm -f $tmpf
   )
@@ -66,7 +82,7 @@ suggest_commands() {
   echo
   echo "git submodule update --init"
   echo "(cd $DATA_SUBDIR && git annex init --version=7)"
-  echo "(cd $DATA_SUBDIR && git remote add nfs /<... path to ...>/GitNX-Repository/qurator/qurator-data)"
+  echo "(cd $DATA_SUBDIR && git remote add nfs annex@b-lx0053.sbb.spk-berlin.de:/var/lib/annex/qurator-data.git)"
 }
 
 handle_data() {
@@ -77,7 +93,9 @@ handle_data() {
     no_download=0
   fi
 
-  if ! check_data_subdir; then
+  if [ -n "$FORCE_DOWNLOAD" ]; then
+    get_from_web
+  elif ! check_data_subdir; then
     if [[ $no_download = 1 ]]; then
       select choice in "Abort to manually fix $DATA_SUBDIR submodule"; do
         if [ $REPLY = 1 ]; then
