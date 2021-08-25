@@ -1,4 +1,4 @@
 # XXX calamari 1.0.1 has bug (Early stopping frequency not honored #146), use
 # this git version:
 https://github.com/Calamari-OCR/calamari/archive/a4fa9d61.tar.gz
-tensorflow-gpu==2.0.0
+tensorflow-gpu==2.5.1
